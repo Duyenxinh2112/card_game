@@ -1,0 +1,82 @@
+/* Định dạng cho container */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Tạo khối cho mỗi phần */
+.game-info, .history-section, .how-to-play, .tips-section {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 20px;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Tạo hiệu ứng khi di chuột vào các khối */
+.game-info:hover, .history-section:hover, .how-to-play:hover, .tips-section:hover {
+    transform: translateY(-5px);
+}
+
+/* Tiêu đề mỗi phần */
+h3 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* Nội dung văn bản */
+p, ol, ul {
+    font-size: 1rem;
+    color: #666;
+}
+
+/* Danh sách có đánh số */
+ol {
+    padding-left: 20px;
+}
+
+/* Danh sách không đánh số */
+ul {
+    padding-left: 20px;
+}
+
+/* Danh sách mẹo */
+ul li {
+    margin-bottom: 10px;
+}
+
+/* Mẹo quan trọng được in đậm */
+ul li strong {
+    color: #333;
+    font-weight: bold;
+}
+
+/* Định dạng footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #0044cc;
+    color: white;
+    margin-top: 20px;
+    font-size: 0.9rem;
+}
+
+/* Responsive cho thiết bị di động */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    p, ol, ul {
+        font-size: 0.9rem;
+    }
+}

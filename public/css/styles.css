@@ -1,0 +1,193 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #DB7093;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2rem;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.logout {
+    float: right; /* Đẩy icon sang bên phải */
+    font-size: 24px; /* Kích thước icon */
+    color: #333;
+    cursor: pointer;
+}
+
+.dashboard {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 2rem;
+}
+
+.card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 23%;
+    text-align: center;
+}
+
+.card h3 {
+    margin-bottom: 1rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+table th {
+    background-color: #DB7093;
+    color: #fff;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+button {
+    padding: 8px 12px;
+    background-color: #DB7093;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #DB7093;
+    color: #fff;
+    margin-top: 20px;
+}
+
+.player-ranking, .player-vs-ai {
+    margin-bottom: 2rem;
+}
+
+.player-ranking h2, .player-vs-ai h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+/* styles.css - Dành cho trang đăng nhập */
+.body-login {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('../img/img_login.png');
+    background-size: cover;
+    background-position: center;
+    /* Đảm bảo nền căn giữa */
+}
+
+.login-container {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    /* Điều chỉnh độ rộng để không quá lớn */
+    display: flex;
+    flex-direction: column;
+    /* Sắp xếp các phần tử theo chiều dọc */
+    justify-content: center;
+    /* Căn giữa theo chiều dọc bên trong form */
+    align-items: center;
+    /* Căn giữa nội dung theo chiều ngang */
+    background-color: #ccc;
+    opacity: 0.9;
+    /* Độ trong suốt nhẹ */
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.error {
+    color: red;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
