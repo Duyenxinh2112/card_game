@@ -330,7 +330,8 @@ function storeLeaderboard($leaderboardInput){
 function getLeaderboardList(){
 
     global $conn;
-    $query = "SELECT leaderboard.*, users.username, MAX(leaderboard.total_score) AS max_total_score
+    $query = "SELECT leaderboard.*, users.username, users.dienTen,
+                MAX(leaderboard.total_score) AS max_total_score
                 FROM leaderboard
                 JOIN users ON leaderboard.user_id = users.user_id
                 GROUP BY leaderboard.user_id, users.username
