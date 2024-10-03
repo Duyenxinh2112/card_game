@@ -64,7 +64,7 @@
                                     <td>${rankImage}</td>
                                     <td>${row.user_id}</td>
                                     <td>${row.username || 'Chưa có tên'}</td>
-                                    <td>${row.total_score}</td>
+                                    <td>${row.max_total_score}</td>
                                     <td>${formattedDate}</td>
                                 </tr>
                             `;

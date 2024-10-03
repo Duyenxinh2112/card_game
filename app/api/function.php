@@ -211,45 +211,82 @@ function storeMatches($matchesInput){
 }
 
 //user
-function storeUser($userInput){
+function storeUser($userInput) {
     global $conn;
 
     $username = mysqli_real_escape_string($conn, $userInput['username']);
     $password = mysqli_real_escape_string($conn, $userInput['password']);
     $email = mysqli_real_escape_string($conn, $userInput['email']);
-    $created_at = date('Y-m-d H:i:s'); 
+    $created_at = date('Y-m-d H:i:s');
     $last_login = mysqli_real_escape_string($conn, $userInput['last_login']);
     $is_ai = mysqli_real_escape_string($conn, $userInput['is_ai']);
     $dienTen = mysqli_real_escape_string($conn, $userInput['dienTen']);
     $birthday = mysqli_real_escape_string($conn, $userInput['birthday']);
+
+    // Kiểm tra nếu cả username và dienTen bị bỏ trống
     if (empty(trim($username)) && empty(trim($dienTen))) {
         return error422('Hãy nhập thông tin username hoặc điền tên');
-    }
-    else{
-        $query = "INSERT INTO users (username,password,email,created_at,last_login,is_ai, dienTen, birthday) 
-        VALUES ('$username','$password', '$email', '$created_at', '$last_login', '$is_ai', '$dienTen', '$birthday')";
-        $result = mysqli_query($conn,$query);
+    } else {
+        // Kiểm tra sự tồn tại của username (nếu có)
+        if (!empty($username)) {
+            $checkUsernameQuery = "SELECT * FROM users WHERE username = '$username' LIMIT 1";
+            $checkUsernameResult = mysqli_query($conn, $checkUsernameQuery);
+            if (mysqli_num_rows($checkUsernameResult) > 0) {
+                // Username đã tồn tại
+                $data = [
+                    'status' => 422,
+                    'message' => 'Username đã tồn tại. Vui lòng chọn tên khác.',
+                ];
+                header("HTTP/1.0 422 Unprocessable Entity");
+                echo json_encode($data);
+                return;
+            }
+        }
 
-        if($result){
+        // Kiểm tra sự tồn tại của dienTen (nếu có)
+        if (!empty($dienTen)) {
+            $checkDienTenQuery = "SELECT * FROM users WHERE dienTen = '$dienTen' LIMIT 1";
+            $checkDienTenResult = mysqli_query($conn, $checkDienTenQuery);
+            if (mysqli_num_rows($checkDienTenResult) > 0) {
+                // dienTen đã tồn tại
+                $data = [
+                    'status' => 422,
+                    'message' => 'Điền tên đã tồn tại. Vui lòng chọn tên khác.',
+                ];
+                header("HTTP/1.0 422 Unprocessable Entity");
+                echo json_encode($data);
+                return;
+            }
+        }
 
+        // Chèn dữ liệu người dùng mới vào bảng
+        $query = "INSERT INTO users (username, password, email, created_at, last_login, is_ai, dienTen, birthday) 
+                  VALUES ('$username', '$password', '$email', '$created_at', '$last_login', '$is_ai', '$dienTen', '$birthday')";
+        $result = mysqli_query($conn, $query);
+
+        if ($result) {
+            // Lấy user_id của bản ghi vừa được thêm vào
+            $user_id = mysqli_insert_id($conn);
             $data = [
                 'status' => 201,
-                'messange' => 'Tài khoản đã được thêm thành công',
+                'message' => 'Tài khoản đã được thêm thành công',
+                'user_id' => $user_id, 
+                'dienTen' => $dienTen   
             ];
             header("HTTP/1.0 201 Created");
             echo json_encode($data);
-
-        }else{
+        } else {
             $data = [
                 'status' => 500,
-                'messange' => 'Internal server error',
+                'message' => 'Internal server error',
             ];
-            header("HTTP/1.0 500 Method not allowed");
+            header("HTTP/1.0 500 Internal Server Error");
             echo json_encode($data);
         }
     }
-
 }
+
+
 //end user
 
 //leaderboard
@@ -501,6 +538,7 @@ function loginUser($userInput) {
                 'status' => 200,
                 'message' => 'Đăng nhập thành công',
                 'user' => [
+                    'user_id' => $user['user_id'],
                     'username' => $user['username'],
                     'email' => $user['email'],
                     'dienTen' => $user['dienTen'],
